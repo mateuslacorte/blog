@@ -5,7 +5,7 @@ excerpt: "A meta post about the blog you're currently reading. Because nothing s
 tags: ["portfolio", "nextjs", "vercel", "meta"]
 ---
 
-So, you're reading a blog post... *about the blog you're reading it on*. How delightfully meta of us. Welcome to peak navel-gazing, my friend. 
+So, you're reading a blog post... *about the blog you're reading it on*. How delightfully meta of us. Welcome to peak navel gazing, my friend. 
 
 ## The Project
 
@@ -15,13 +15,13 @@ I decided to create this blog because apparently, having a LinkedIn profile and 
 
 ## The Tech Stack (Because Everyone Cares)
 
-### Why Not WordPress? (Or: A Tale of Professional vs Personal)
+### Why Not WordPress?
 
-You might be wondering: "Why didn't you just use WordPress like a normal person?" Well, here's the thing—I actually *do* use WordPress. For e-commerce sites, client projects, and all that jazz. It's fine. It works. It gets the job done.
+You might be wondering: "Why didn't you just use WordPress like a normal person?" Well, here's the thing! I actually *do* use WordPress. For e-commerce sites, client projects, and all that jazz. It's fine. It works. It gets the job done.
 
-But here's the catch: I don't like it enough to put my personal data on it. **11 out of 10 WordPress instances catch viruses**—yes, I know that's mathematically impossible, but WordPress finds a way. It's like that reliable coworker who always gets the job done but also always seems to have some kind of drama going on.
+But here's the catch: I don't like it enough to put my personal data on it. **11 out of 10 WordPress instances catch viruses**... Yes, I know that's mathematically impossible, but WordPress finds a way. It's like that reliable coworker who always gets the job done fast, everybody from the HR and Management love him, but there is a catch, he also fuck up the whole codebase with AI slop and spaghetti code every time he touches it.
 
-For my simpleton clients who ask for WordPress? Sure, why not. They want it, they get it. It's their data, their problem. But for *my* personal blog? Nah. I'll stick with my custom-built solution where I know exactly what's happening (and when it breaks, I know exactly who to blame—spoiler: it's me).
+For my simpleton clients who ask for WordPress? Sure, why not. They want it, they get it. It's their data, their problem. But for *my* personal blog? Nah. I'll stick with my custom built solution where I know exactly what's happening and when it breaks, I know exactly who to blame... (spoiler: it's me).
 
 So WordPress is great for business, but for personal stuff, I prefer something I actually control. Call me picky, but I like my personal projects to be... well, personal.
 
@@ -29,7 +29,7 @@ So WordPress is great for business, but for personal stuff, I prefer something I
 
 Ah, **Ghost CMS**. My beloved. The one that got away. Or rather, the one I ran away from.
 
-Ghost is beautiful. It's clean. It's modern. It's also a resource hog that makes my server cry. Why does it need so much RAM and CPU just to display text on a screen? It's like using a Formula 1 car to go to the grocery store—technically impressive, but completely overkill.
+Ghost is beautiful. It's clean. It's modern. It's also a resource hog that makes my server cry. Why does it need so much RAM and CPU just to display text on a screen? It's like using a Formula 1 car to go to the grocery store! Technically impressive, but completely overkill.
 
 I tried Ghost once. My server started making sounds I didn't know servers could make. It was using more resources than a small country, and for what? To be a glorified Blogspot? Don't get me wrong, Ghost is great if you're running a media company or need all those fancy features. But for a personal blog where I write about... well, my blog? It's like bringing a flamethrower to a birthday party.
 
@@ -41,7 +41,7 @@ I chose **Next.js** because I'm a basic developer who follows trends. Also, beca
 I'm using the App Router because I like living on the edge (or at least, the edge that was stable six months ago). The Pages Router is for cowards, and I'm definitely not a coward. I'm just... fashionably late to the party.
 
 ### TypeScript
-Because JavaScript wasn't confusing enough, I added types. Now I can spend hours arguing with my IDE about whether `string | null | undefined` is the same as `string?`. Spoiler: it's not, and TypeScript will make sure you know it.
+Because JavaScript wasn't confusing enough, I added types. Now I can spend hours arguing with my IDE about whether `string | null | undefined` is the same as `string?`. (Spoiler: it's not, and TypeScript will make sure you know it.)
 
 ### Markdown for Posts
 I store posts as Markdown files because I'm old school like that. No fancy CMS, no database, just good ol' `.md` files sitting in a folder. It's like the 90s, but with better syntax highlighting.
@@ -51,23 +51,24 @@ The best part? I can write posts in VS Code, which means I get to feel productiv
 ### The Design: Fallout Terminal Aesthetic
 
 I went with a **Fallout-inspired terminal design** because:
-1. I'm a huge nerd
+1. I have a friend, yes... a very good friend...
+2. He loves the Fallout series, he really do...
 2. Green text on black background is easier on the eyes at 3 AM
 3. It makes me feel like I'm hacking into a mainframe (I'm not)
 4. It's retro, which is code for "I couldn't be bothered to learn modern design"
 
 The CSS is a beautiful mess of animations, keyframes, and questionable color choices. There's a flicker effect that makes it look like an old CRT monitor, which is either charming or annoying depending on how much coffee you've had.
 
-## Features (Or: Things I Spent Too Much Time On)
+## Features
 
 ### Comments System
-Yes, there's a comments system. No, nobody uses it. But it's there, and that's what matters. It's like having a guest room in your apartment—you'll probably never use it, but it makes you feel like a responsible adult.
+Yes, there's a comments system. No, nobody uses it. But it's there, and that's what matters. It's like having a guest room in your apartment—you'll probably never use it, but it makes you feel like a responsible adult. (Note: Does not work at all in Vercel where this is hosted... You're welcome!)
 
 ### Contact Form
-There's a contact form because apparently, email addresses are too complicated for people to use directly. I'm not judging (I'm totally judging), but hey, if it makes someone's life easier, who am I to complain?
+There's a contact form because apparently, email addresses are too complicated for people to use directly. I'm not judging (I'm totally judging), but hey, if it makes someone's life easier, who am I to complain? (Note: Does not work... YET!!!)
 
 ### Newsletter Signup
-Because what's a blog without a newsletter that nobody subscribes to? It's the modern equivalent of a guestbook, but with more spam potential.
+Because what's a blog without a newsletter that nobody subscribes to? It's the modern equivalent of a guestbook, but with more spam potential. (Note: Same-same, but different! Not actually...)
 
 ### Web Workers & WebAssembly
 I added Web Workers and WebAssembly because I wanted to feel smart. Do I actually need them? Probably not. Do they make the blog faster? Marginally. Do they make me look like I know what I'm doing? Absolutely.
@@ -89,29 +90,29 @@ The deployment process is so smooth, it's almost suspicious. One push to GitHub,
 1. **Don't overthink the design** - I spent way too much time on CSS animations that nobody notices
 2. **Markdown is your friend** - Simple is better. Always.
 3. **TypeScript will save you** - Even when you hate it, it's saving you from yourself
-4. **Vercel is amazing** - Seriously, use it. It's not sponsored, I just really like it
+4. **Vercel sucks** - Seriously, read-only filesystems? I get it's serverless, but man... It sucks!
 5. **Nobody reads blogs anymore** - But here we are anyway, because we're optimists (or masochists)
 
 ## The Reality Check
 
 Let's be honest: this blog is probably over-engineered for what it does. I could have used WordPress or Medium or literally any other platform. But where's the fun in that? Plus, building your own blog is a rite of passage for developers, like getting your first "it works on my machine" moment.
 
-Is it perfect? No. Will I keep tinkering with it? Absolutely. Will I ever be satisfied with it? Probably not. But that's the beauty of being a developer—we're never done, we're just temporarily out of ideas.
+Is it perfect? No. Will I keep tinkering with it? Absolutely. Will I ever be satisfied with it? Probably not. But that's the beauty of being a developer, we're never done, we're just temporarily out of ideas.
 
 ## Conclusion
 
-So there you have it. This is my blog. It's built with Next.js, deployed on Vercel, and probably has more bugs than features. But it's mine, and I'm weirdly proud of it.
+So there you have it. This is my blog. It's built with Next.js, deployed on Vercel, and it probably has more bugs than features. But it's mine, and I'm weirdly proud of it. (Note: Bugs are features, muahahahaha!)
 
 If you made it this far, congratulations! You've successfully read a blog post about a blog, which is peak internet content. Now go outside. Touch grass. Or, you know, read another post. I'm not your boss.
 
 ---
 
 **Tech Stack Summary:**
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript (because we hate ourselves)
-- **Styling**: CSS (the old-fashioned way)
-- **Content**: Markdown files (because databases are overrated)
-- **Deployment**: Vercel (because free is free)
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: CSS
+- **Content**: Markdown
+- **Deployment**: Vercel
 - **Sanity**: Questionable
 
 **Live Site**: [lacorte.dev](https://www.lacorte.dev) (if it's still up, that is)
