@@ -54,4 +54,4 @@ Feel free to reach out if you want to chat about tech, collaborate on a project,
 - **Website**: [lacorte.dev](https://www.lacorte.dev)
 - **Telegram**: [lacortedev](https://t.me/lacortedev)
 
-Thanks for stopping by, and I hope you enjoy the content I'll be sharing here! 🚀
+Thanks for stopping by, and I hope you enjoy the content I'll be sharing here!
