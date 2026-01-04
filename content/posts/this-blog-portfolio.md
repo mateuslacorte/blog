@@ -53,9 +53,9 @@ The best part? I can write posts in VS Code, which means I get to feel productiv
 I went with a **Fallout-inspired terminal design** because:
 1. I have a friend, yes... a very good friend...
 2. He loves the Fallout series, he really do...
-2. Green text on black background is easier on the eyes at 3 AM
-3. It makes me feel like I'm hacking into a mainframe (I'm not)
-4. It's retro, which is code for "I couldn't be bothered to learn modern design"
+3. Green text on black background is easier on the eyes at 3 AM
+4. It makes me feel like I'm hacking into a mainframe (I'm not)
+5. It's retro, which is code for "I couldn't be bothered to learn modern design"
 
 The CSS is a beautiful mess of animations, keyframes, and questionable color choices. There's a flicker effect that makes it look like an old CRT monitor, which is either charming or annoying depending on how much coffee you've had.
 
