@@ -41,7 +41,7 @@ export default function SkillsPage() {
     <>
       <h2>Skill Tree & Technologies</h2>
 
-      <p>Here's what I work with. Some I love, some I tolerate, all I use.</p>
+      <p>Here&apos;s what I work with. Some I love, some I tolerate, all I use.</p>
 
       <h3>Frontend & Frameworks</h3>
       <ul>
