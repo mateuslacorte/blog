@@ -1,7 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
+interface Post {
+  slug: string
+  title: string
+  date: string
+}
 
 export default function AdminPage() {
   const [username, setUsername] = useState('')
@@ -10,7 +16,30 @@ export default function AdminPage() {
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
+  const [posts, setPosts] = useState<Post[]>([])
+  const [loadingPosts, setLoadingPosts] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    if (authenticated) {
+      fetchPosts()
+    }
+  }, [authenticated])
+
+  const fetchPosts = async () => {
+    setLoadingPosts(true)
+    try {
+      const response = await fetch('/api/admin/posts')
+      if (response.ok) {
+        const data = await response.json()
+        setPosts(data)
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error)
+    } finally {
+      setLoadingPosts(false)
+    }
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,9 +102,9 @@ export default function AdminPage() {
       if (response.ok) {
         setMessage(`Post "${data.slug}" criado com sucesso!`)
         setFile(null)
-        // Reset file input
         const fileInput = document.getElementById('file-input') as HTMLInputElement
         if (fileInput) fileInput.value = ''
+        fetchPosts()
       } else {
         setMessage(data.error || 'Erro ao fazer upload')
       }
@@ -83,6 +112,28 @@ export default function AdminPage() {
       setMessage('Erro ao fazer upload do arquivo')
     } finally {
       setUploading(false)
+    }
+  }
+
+  const handleDelete = async (slug: string) => {
+    if (!confirm(`Tem certeza que deseja deletar o post "${slug}"?`)) {
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/admin/posts/${slug}`, {
+        method: 'DELETE',
+      })
+
+      if (response.ok) {
+        setMessage(`Post "${slug}" deletado com sucesso!`)
+        fetchPosts()
+      } else {
+        const data = await response.json()
+        setMessage(data.error || 'Erro ao deletar post')
+      }
+    } catch (error) {
+      setMessage('Erro ao deletar post')
     }
   }
 
@@ -116,13 +167,14 @@ export default function AdminPage() {
 
   return (
     <>
-      <h2>Admin Panel - Upload Post</h2>
+      <h2>Admin Panel</h2>
       <p>
         <a href="/" onClick={(e) => { e.preventDefault(); router.push('/') }}>
           [ Voltar para Home ]
         </a>
       </p>
 
+      <h3>Upload New Post</h3>
       <form onSubmit={handleUpload}>
         <label>Markdown File &gt;&gt;</label>
         <input
@@ -144,6 +196,42 @@ export default function AdminPage() {
           disabled={uploading || !file}
         />
       </form>
+
+      <h3>Existing Posts</h3>
+      {loadingPosts ? (
+        <p>Carregando posts...</p>
+      ) : posts.length === 0 ? (
+        <p>Nenhum post encontrado.</p>
+      ) : (
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          {posts.map((post) => (
+            <li key={post.slug} style={{ marginBottom: '20px', padding: '10px', border: '1px solid #0d0' }}>
+              <strong>{post.title}</strong>
+              <br />
+              <span style={{ fontSize: '0.9em', color: '#888' }}>
+                Slug: {post.slug} | Data: {post.date || 'N/A'}
+              </span>
+              <br />
+              <a
+                href={`/admin/edit/${post.slug}`}
+                style={{ marginRight: '10px' }}
+              >
+                [ Editar ]
+              </a>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleDelete(post.slug)
+                }}
+                style={{ color: 'red' }}
+              >
+                [ Deletar ]
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {message && (
         <p style={{ color: message.includes('sucesso') ? '#0d0' : 'red' }}>

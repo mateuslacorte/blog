@@ -404,6 +404,16 @@ a.button:hover {
   text-transform: uppercase;
 }
 
+a[href*="Editar"],
+a[href*="Deletar"] {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a[href*="Deletar"]:hover {
+  color: #ff0000;
+}
+
 article {
   margin-bottom: 40px;
 }

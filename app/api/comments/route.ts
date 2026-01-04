@@ -4,7 +4,6 @@ import path from 'path'
 
 const commentsDirectory = path.join(process.cwd(), 'data', 'comments')
 
-// Garantir que o diretório existe
 if (!fs.existsSync(commentsDirectory)) {
   fs.mkdirSync(commentsDirectory, { recursive: true })
 }
