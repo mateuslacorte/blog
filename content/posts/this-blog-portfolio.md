@@ -117,7 +117,7 @@ I deployed this on **Vercel** because:
 The deployment process is so smooth, it's almost suspicious. One push to GitHub, and boom—your site is live. It's like magic, but with more environment variables and slightly less rabbits.
 
 
-## What I Learned (Or: Mistakes I Made)
+## What I Learned
 
 1. **Don't overthink the design** - I spent way too much time on CSS animations that nobody notices
 2. **Markdown is your friend** - Simple is better. Always.
@@ -131,24 +131,3 @@ Let's be honest: this blog is probably over-engineered for what it does. I could
 
 
 Is it perfect? No. Will I keep tinkering with it? Absolutely. Will I ever be satisfied with it? Probably not. But that's the beauty of being a developer, we're never done, we're just temporarily out of ideas.
-
-
-## Conclusion
-
-So there you have it. This is my blog. It's built with Next.js, deployed on Vercel, and it probably has more bugs than features. But it's mine, and I'm weirdly proud of it. (Note: Bugs are features, muahahahaha!)
-
-
-If you made it this far, congratulations! You've successfully read a blog post about a blog, which is peak internet content. Now go outside. Touch grass. Or, you know, read another post. I'm not your boss.
-
-
----
-
-**Tech Stack Summary:**
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: CSS
-- **Content**: Markdown
-- **Deployment**: Vercel
-- **Sanity**: Questionable
-
-**Live Site**: [lacorte.dev](https://www.lacorte.dev) (if it's still up, that is)
