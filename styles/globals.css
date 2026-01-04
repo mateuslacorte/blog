@@ -135,8 +135,17 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  margin: 0;
+  margin: 1em 0 0.5em 0;
   text-transform: uppercase;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
 }
 
 h4 b {
