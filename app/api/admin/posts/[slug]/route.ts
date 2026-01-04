@@ -4,12 +4,18 @@ import path from 'path'
 
 const postsDirectory = path.join(process.cwd(), 'content', 'posts')
 
+// Garantir que o diretório existe
+if (!fs.existsSync(postsDirectory)) {
+  fs.mkdirSync(postsDirectory, { recursive: true })
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const filePath = path.join(postsDirectory, `${params.slug}.md`)
+    const { slug } = await params
+    const filePath = path.join(postsDirectory, `${slug}.md`)
     
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(
@@ -21,13 +27,13 @@ export async function GET(
     const fileContent = fs.readFileSync(filePath, 'utf8')
     
     return NextResponse.json({
-      slug: params.slug,
+      slug,
       content: fileContent,
     })
   } catch (error) {
     console.error('Error reading post:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
@@ -35,10 +41,11 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const filePath = path.join(postsDirectory, `${params.slug}.md`)
+    const { slug } = await params
+    const filePath = path.join(postsDirectory, `${slug}.md`)
     
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(
@@ -51,12 +58,12 @@ export async function DELETE(
     
     return NextResponse.json({
       success: true,
-      message: `Post "${params.slug}" deleted successfully`,
+      message: `Post "${slug}" deleted successfully`,
     })
   } catch (error) {
     console.error('Error deleting post:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
@@ -64,9 +71,10 @@ export async function DELETE(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params
     const body = await request.json()
     const { content } = body
 
@@ -77,7 +85,7 @@ export async function PUT(
       )
     }
 
-    const filePath = path.join(postsDirectory, `${params.slug}.md`)
+    const filePath = path.join(postsDirectory, `${slug}.md`)
     
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(
@@ -90,12 +98,12 @@ export async function PUT(
     
     return NextResponse.json({
       success: true,
-      message: `Post "${params.slug}" updated successfully`,
+      message: `Post "${slug}" updated successfully`,
     })
   } catch (error) {
     console.error('Error updating post:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }

@@ -157,10 +157,6 @@ p {
   margin: 0;
 }
 
-span {
-  animation: blink 1s infinite;
-}
-
 ul {
   list-style: none;
 }
