@@ -6,22 +6,74 @@ export const metadata: Metadata = {
 }
 
 export default function SkillsPage() {
-  const skills = [
+  const frontend = [
+    'JavaScript & TypeScript',
+    'React & React Native',
+    'Next.js',
+    'Vite',
+    'CSS',
+  ]
+
+  const backend = [
     'Node.js',
-    'React & Next.js',
-    'PHP & Laravel',
     'NestJS',
-    'Python & Django',
-    'Java',
-    'Docker & Serverless',
+    'WordPress (for clients, not for me)',
+  ]
+
+  const databases = [
+    'MySQL & MariaDB',
+    'PostgreSQL',
+    'MongoDB',
+    'Redis',
+  ]
+
+  const testing = [
+    'Jest',
+    'Mocha',
+  ]
+
+  const other = [
+    'Markdown',
+    'Web Workers & WebAssembly',
   ]
 
   return (
     <>
       <h2>Skill Tree & Technologies</h2>
 
+      <p>Here's what I work with. Some I love, some I tolerate, all I use.</p>
+
+      <h3>Frontend & Frameworks</h3>
       <ul>
-        {skills.map((skill) => (
+        {frontend.map((skill) => (
+          <li key={skill}>{skill}</li>
+        ))}
+      </ul>
+
+      <h3>Backend & APIs</h3>
+      <ul>
+        {backend.map((skill) => (
+          <li key={skill}>{skill}</li>
+        ))}
+      </ul>
+
+      <h3>Databases</h3>
+      <ul>
+        {databases.map((skill) => (
+          <li key={skill}>{skill}</li>
+        ))}
+      </ul>
+
+      <h3>Testing</h3>
+      <ul>
+        {testing.map((skill) => (
+          <li key={skill}>{skill}</li>
+        ))}
+      </ul>
+
+      <h3>Other Stuff</h3>
+      <ul>
+        {other.map((skill) => (
           <li key={skill}>{skill}</li>
         ))}
       </ul>
