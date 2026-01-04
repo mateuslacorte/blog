@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdint.h>
+#include <math.h>
+
+static uint32_t mt[624];
+static int index = 0;
+
+void mt_init(uint32_t seed) {
+    mt[0] = seed;
+    for (int i = 1; i < 624; i++) {
+        mt[i] = 1812433253 * (mt[i - 1] ^ (mt[i - 1] >> 30)) + i;
+    }
+}
+
+uint32_t mt_gen() {
+    if (index == 0) {
+        for (int i = 0; i < 624; i++) {
+            uint32_t y = (mt[i] & 0x80000000) + (mt[(i + 1) % 624] & 0x7fffffff);
+            mt[i] = mt[(i + 397) % 624] ^ (y >> 1);
+            if (y % 2) {
+                mt[i] ^= 0x9908b0df;
+            }
+        }
+    }
+
+    uint32_t y = mt[index];
+    index = (index + 1) % 624;
+    y ^= (y >> 11);
+    y ^= (y << 7) & 0x9d2c5680;
+    y ^= (y << 15) & 0xefc60000;
+    y ^= (y >> 18);
+    return y;
+}
+
+double check_probability() {
+    uint32_t rand_value = mt_gen();
+    double normalized_value = (double)rand_value / (double)0xFFFFFFFF; // Normalize to [0, 1]
+    return normalized_value < 0.0000314159;
+}
