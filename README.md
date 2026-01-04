@@ -1,6 +1,6 @@
-# SKIBIDI Systems Blog
+# LACORTE Systems Blog
 
-Um blog React/Next.js inspirado no terminal do Fallout, migrado do template Ghost CMS original.
+Um blog React/Next.js inspirado no terminal do Fallout.
 
 ## Características
 
@@ -14,10 +14,10 @@ Um blog React/Next.js inspirado no terminal do Fallout, migrado do template Ghos
 
 ## Tecnologias
 
-- Next.js 14 (App Router)
+- Next.js
 - React 18
 - TypeScript
-- Markdown (gray-matter, remark)
+- Markdown
 - date-fns
 
 ## Instalação
@@ -44,26 +44,25 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
 ```
 blog/
-├── app/                    # Páginas Next.js (App Router)
-│   ├── api/               # API routes
-│   ├── posts/             # Páginas de posts
+├── app/                   # Páginas
+│   ├── api/               # API
 │   └── ...
-├── components/            # Componentes React
+├── components/            # Componentes
 ├── content/               # Posts em Markdown
 │   └── posts/
-├── hooks/                 # React hooks
+├── hooks/                 # Hooks
 ├── lib/                   # Utilitários
-├── public/                # Assets estáticos
+├── public/                # Assets
 │   └── assets/
-│       ├── js/           # JavaScript (Web Workers)
+│       ├── js/           # JavaScript
 │       ├── wasm/         # WebAssembly
 │       └── images/       # Imagens
-└── styles/               # CSS global
+└── styles/               # CSS
 ```
 
 ## Criando Posts
 
-Crie arquivos Markdown em `content/posts/` com o seguinte formato:
+Crie um arquivo Markdown em `content/posts/` com o seguinte formato:
 
 ```markdown
 ---
@@ -76,7 +75,7 @@ tags: ["tag1", "tag2"]
 Conteúdo do post em Markdown...
 ```
 
-## API Routes
+## API
 
 ### `/api/contact`
 POST - Envia formulário de contato
@@ -87,16 +86,6 @@ POST - Inscreve email na newsletter
 ### `/api/comments`
 GET - Busca comentários de um post
 POST - Adiciona comentário a um post
-
-## Deploy
-
-O projeto está pronto para deploy na Vercel:
-
-```bash
-npm run build
-```
-
-Ou conecte seu repositório à Vercel para deploy automático.
 
 ## Notas
 
