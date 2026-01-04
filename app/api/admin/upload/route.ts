@@ -6,15 +6,12 @@ import matter from 'gray-matter'
 const postsDirectory = path.join(process.cwd(), 'content', 'posts')
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'
 
-// Garantir que o diretório existe
 if (!fs.existsSync(postsDirectory)) {
   fs.mkdirSync(postsDirectory, { recursive: true })
 }
 
 function sanitizeFilename(filename: string): string {
-  // Remove extensão .md
   const name = filename.replace(/\.md$/, '')
-  // Remove caracteres especiais e espaços, substitui por hífens
   return name
     .toLowerCase()
     .normalize('NFD')
@@ -25,10 +22,7 @@ function sanitizeFilename(filename: string): string {
 
 export async function POST(request: NextRequest) {
   try {
-    // Verificar autenticação (simplificado - em produção use sessões/JWT)
     const authHeader = request.headers.get('authorization')
-    // Por enquanto, vamos confiar que o usuário está autenticado
-    // Em produção, implemente verificação de sessão adequada
 
     const formData = await request.formData()
     const file = formData.get('file') as File
@@ -47,10 +41,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Ler conteúdo do arquivo
     const fileContent = await file.text()
 
-    // Validar front matter
     let frontMatter
     try {
       const parsed = matter(fileContent)
@@ -69,10 +61,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Gerar slug baseado no título ou nome do arquivo
     const slug = frontMatter.slug || sanitizeFilename(frontMatter.title || file.name)
 
-    // Verificar se já existe um post com esse slug
     const filePath = path.join(postsDirectory, `${slug}.md`)
     if (fs.existsSync(filePath)) {
       return NextResponse.json(
@@ -81,7 +71,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Salvar arquivo
     fs.writeFileSync(filePath, fileContent, 'utf8')
 
     return NextResponse.json(

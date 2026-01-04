@@ -5,7 +5,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, phone, subject, message } = body
 
-    // Validação básica
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'All required fields are required' },
@@ -13,8 +12,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Aqui você pode integrar com um serviço de email como SendGrid, Resend, etc.
-    // Por enquanto, apenas logamos os dados
     console.log('Contact form submission:', {
       name,
       email,

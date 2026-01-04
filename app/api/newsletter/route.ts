@@ -5,7 +5,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { email } = body
 
-    // Validação básica
     if (!email || !email.includes('@')) {
       return NextResponse.json(
         { error: 'Valid email is required' },
@@ -13,8 +12,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Aqui você pode integrar com um serviço de email marketing
-    // Por enquanto, apenas logamos o email
     console.log('Newsletter subscription:', email)
 
     // TODO: Integrar com serviço de email marketing

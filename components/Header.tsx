@@ -10,7 +10,6 @@ export default function Header() {
   return (
     <header className="site clearfix">
       <div className="col one">
-        {/* TODO: Adicionar logo em /public/assets/images/logo.png */}
         <img
           src="/assets/images/logo.png"
           alt="LACORTE Systems"
