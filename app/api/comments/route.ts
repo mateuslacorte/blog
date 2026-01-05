@@ -4,8 +4,18 @@ import path from 'path'
 
 const commentsDirectory = path.join(process.cwd(), 'data', 'comments')
 
-if (!fs.existsSync(commentsDirectory)) {
-  fs.mkdirSync(commentsDirectory, { recursive: true })
+function ensureCommentsDirectory(): boolean {
+  try {
+    if (!fs.existsSync(commentsDirectory)) {
+      fs.mkdirSync(commentsDirectory, { recursive: true })
+    }
+    return true
+  } catch (error) {
+    // In serverless environments like Vercel, filesystem is read-only
+    // Comments won't work in production without a database
+    console.warn('Cannot create comments directory (read-only filesystem):', error)
+    return false
+  }
 }
 
 interface Comment {
@@ -34,9 +44,16 @@ function readComments(postSlug: string): Comment[] {
   }
 }
 
-function writeComments(postSlug: string, comments: Comment[]): void {
-  const filePath = getCommentsFilePath(postSlug)
-  fs.writeFileSync(filePath, JSON.stringify(comments, null, 2))
+function writeComments(postSlug: string, comments: Comment[]): boolean {
+  try {
+    ensureCommentsDirectory()
+    const filePath = getCommentsFilePath(postSlug)
+    fs.writeFileSync(filePath, JSON.stringify(comments, null, 2))
+    return true
+  } catch (error) {
+    console.error('Error writing comments:', error)
+    return false
+  }
 }
 
 export async function GET(request: NextRequest) {
@@ -76,7 +93,14 @@ export async function POST(request: NextRequest) {
     }
 
     comments.push(newComment)
-    writeComments(postSlug, comments)
+    const written = writeComments(postSlug, comments)
+
+    if (!written) {
+      return NextResponse.json(
+        { error: 'Comments are not available in this environment (read-only filesystem)' },
+        { status: 503 }
+      )
+    }
 
     return NextResponse.json(newComment, { status: 201 })
   } catch (error) {

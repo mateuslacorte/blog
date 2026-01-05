@@ -310,6 +310,24 @@ textarea {
   z-index: 10;
 }
 
+form label {
+  clear: both;
+  float: left;
+  margin-bottom: 5px;
+}
+
+form input[type=text],
+form input[type=email],
+form input[type=password],
+form input[type=search],
+form input[type=tel],
+form input[type=url],
+form textarea {
+  clear: both;
+  float: left;
+  margin-bottom: 10px;
+}
+
 input[type=file] {
   cursor: pointer;
 }
