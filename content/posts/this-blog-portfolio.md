@@ -1,6 +1,6 @@
 ---
 title: "This Blog (Yes, The One You're Reading Right Now)"
-date: "2025-01-13"
+date: "2026-01-04"
 excerpt: "A meta post about the blog you're currently reading. Because nothing says 'I have too much time' like writing about your own blog."
 tags: ["portfolio", "nextjs", "vercel", "meta"]
 ---

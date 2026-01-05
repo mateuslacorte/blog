@@ -1,6 +1,6 @@
 ---
 title: "Network Scanner CGI Script"
-date: "2025-01-13"
+date: "2026-01-05"
 excerpt: "A blast from the past: a CGI script I wrote in college for network scanning. It's old, it's bash, and it's probably terrible. But hey, it worked!"
 tags: ["portfolio", "networking", "bash", "college", "retro"]
 ---

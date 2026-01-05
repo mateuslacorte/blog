@@ -1,6 +1,6 @@
 ---
 title: "Hey there!"
-date: "2025-01-13"
+date: "2026-01-04"
 excerpt: "A quick intro about who I am, what I do, and the tech stack I love working with."
 tags: ["introduction", "about"]
 ---
