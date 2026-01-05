@@ -131,3 +131,5 @@ Let's be honest: this blog is probably over-engineered for what it does. I could
 
 
 Is it perfect? No. Will I keep tinkering with it? Absolutely. Will I ever be satisfied with it? Probably not. But that's the beauty of being a developer, we're never done, we're just temporarily out of ideas.
+
+You can find the code to this mess [here](https://github.com/mateuslacorte/blog).
