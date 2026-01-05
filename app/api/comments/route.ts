@@ -15,16 +15,13 @@ function checkFilesystemAccess(): boolean {
   try {
     if (!fs.existsSync(commentsDirectory)) {
       fs.mkdirSync(commentsDirectory, { recursive: true })
-    }
-    // Test write access
+    } 
     const testFile = path.join(commentsDirectory, '.test')
     fs.writeFileSync(testFile, 'test')
     fs.unlinkSync(testFile)
     useBlobStorage = false
     return true
   } catch (error) {
-    // In serverless environments like Vercel, filesystem is read-only
-    // Use Vercel Blob as fallback
     console.warn('Filesystem is read-only, using Vercel Blob storage')
     useBlobStorage = true
     return false
@@ -89,8 +86,7 @@ async function writeComments(postSlug: string, comments: Comment[]): Promise<boo
     try {
       const blobKey = getBlobKey(postSlug)
       const content = JSON.stringify(comments, null, 2)
-      
-      // Delete existing blob if it exists
+
       try {
         const blobs = await list({ prefix: blobKey })
         const existingBlob = blobs.blobs.find(b => b.pathname === blobKey)
