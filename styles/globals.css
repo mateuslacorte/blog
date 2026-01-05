@@ -311,8 +311,8 @@ textarea {
 }
 
 form label {
-  clear: both;
   float: left;
+  margin-right: 10px;
   margin-bottom: 5px;
 }
 
@@ -323,9 +323,12 @@ form input[type=search],
 form input[type=tel],
 form input[type=url],
 form textarea {
-  clear: both;
   float: left;
   margin-bottom: 10px;
+}
+
+form br {
+  clear: both;
 }
 
 input[type=file] {
