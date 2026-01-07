@@ -167,3 +167,6 @@ This NestJS reference backend is a comprehensive starting point for modern backe
 
 
 The project demonstrates real-world NestJS patterns and serves as both a template and a learning resource for building scalable backend applications.
+
+
+If you wish to use it, [here is a link to it's GitHub](https://github.com/mateuslacorte/nestjs-backend).
