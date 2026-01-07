@@ -22,7 +22,6 @@ The goal was to create something that developers could clone and immediately sta
 
 
 **Core Framework:**
-
 - **NestJS** - Enterprise-grade Node.js framework
 - **TypeScript** - For type safety and better developer experience
 - **GraphQL (Apollo)** - Modern API query language
@@ -30,14 +29,12 @@ The goal was to create something that developers could clone and immediately sta
 
 
 **Databases:**
-
 - **MongoDB** (Mongoose/Typegoose) - Document database for flexible schemas
 - **PostgreSQL** (TypeORM) - Relational database for structured data
 - **Redis** - In-memory caching layer
 
 
 **Authentication & Security:**
-
 - **JWT** - Token-based authentication
 - **Passport** - Authentication strategies
 - **bcrypt** - Password hashing
@@ -45,7 +42,6 @@ The goal was to create something that developers could clone and immediately sta
 
 
 **Real-time & Communication:**
-
 - **WebSockets** (Socket.io) - Real-time bidirectional communication
 - **Email** (Nodemailer) - SMTP email service
 - **WhatsApp** - Messaging integration
@@ -53,24 +49,20 @@ The goal was to create something that developers could clone and immediately sta
 
 
 **Storage & Files:**
-
 - **MinIO** - S3-compatible object storage
 - **File upload service** - Handles multipart file uploads
 
 
 **Logging & Monitoring:**
-
 - **Logtail** - Centralized log aggregation
 
 
 **Documentation:**
-
 - **Swagger** - Interactive API documentation
 - **Wiki** - Built-in documentation system
 
 
 **Other Features:**
-
 - **Scheduled tasks** - Cron job support
 - **Image processing** - Canvas/Jimp integration
 - **QR code scanning** - Barcode reading capabilities
@@ -131,7 +123,6 @@ Swagger UI for API documentation and a built-in wiki system for project document
 
 
 The project follows NestJS best practices with a modular architecture:
-
 - **Modules** - Feature-based modules (auth, users, email, etc.)
 - **Common** - Shared utilities and services (cache, file upload, WebSocket, security)
 - **Config** - Centralized configuration management
@@ -148,7 +139,6 @@ Each module is self-contained and can be easily extended or removed based on you
 
 
 This reference project saves significant development time by providing:
-
 1. **Pre-configured integrations** - All the common services are already set up and working
 2. **Best practices** - Code follows NestJS conventions and TypeScript best practices
 3. **Type safety** - Full TypeScript support with proper typing throughout
@@ -164,7 +154,6 @@ Instead of spending days or weeks setting up authentication, database connection
 
 
 This template is ideal for:
-
 - **Starting new projects** - Get a head start with all common features
 - **Learning NestJS** - See how to structure a real-world NestJS application
 - **Reference implementation** - Use as a guide for your own projects
