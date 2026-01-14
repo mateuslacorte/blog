@@ -5,7 +5,6 @@ import { useState } from 'react'
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const emailInputId = 'newsletter-email'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,9 +38,8 @@ export default function Footer() {
         <p>Thank you for subscribing!</p>
       ) : (
         <form onSubmit={handleSubmit}>
-          <label htmlFor={emailInputId}>Email &gt;&gt;</label>
+          <label>Email &gt;&gt;</label>
           <input
-            id={emailInputId}
             type="email"
             name="email"
             value={email}

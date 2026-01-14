@@ -14,7 +14,9 @@ export default function Header() {
           src="/assets/images/logo.png"
           alt="LACORTE Systems"
           id="logo-v"
-          style={{ display: 'block', height: 'auto', margin: '0 auto', width: '200px' }}
+          width={314}
+          height={136}
+          style={{ display: 'block', height: 'auto', margin: '0 auto' }}
         />
       </div>
       <div className="col two">
