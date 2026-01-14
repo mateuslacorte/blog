@@ -414,7 +414,7 @@ a.button {
   font-family: var(--font-vt323, 'VT323', Courier, monospace);
   font-size: 1em;
   margin-bottom: 20px;
-  opacity: 0.8 !important;
+  opacity: 0.8;
   padding: 10px 100px;
   position: relative;
   text-decoration: none;

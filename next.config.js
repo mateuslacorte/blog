@@ -60,8 +60,8 @@ const nextConfig = {
       
       // Prevent polyfills from being included
       if (config.plugins) {
-        config.plugins = config.plugins.filter((plugin: any) => {
-          return !(plugin && plugin.constructor && plugin.constructor.name === 'ProvidePlugin' && plugin.definitions && Object.keys(plugin.definitions).some((key: string) => key.includes('core-js')))
+        config.plugins = config.plugins.filter((plugin) => {
+          return !(plugin && plugin.constructor && plugin.constructor.name === 'ProvidePlugin' && plugin.definitions && Object.keys(plugin.definitions).some((key) => key.includes('core-js')))
         })
       }
     }
