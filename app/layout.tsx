@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { VT323 } from 'next/font/google'
 import '../styles/globals.css'
 import Layout from '@/components/Layout'
@@ -48,6 +49,52 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
       <body>
+        <Script
+          id="disable-animations-inline"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Ensure content is visible immediately
+                var style = document.createElement('style');
+                style.textContent = '.wrapper, .content { animation: none !important; height: auto !important; overflow: visible !important; }';
+                document.head.appendChild(style);
+                
+                function enableAnimations() {
+                  // Wait for content to render, then enable animations
+                  requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                      setTimeout(function() {
+                        var wrapper = document.querySelector('.wrapper');
+                        var content = document.querySelector('.content');
+                        if (wrapper) {
+                          wrapper.style.height = '';
+                          wrapper.style.overflow = '';
+                          wrapper.classList.add('animate');
+                        }
+                        if (content) {
+                          content.style.height = '';
+                          content.style.overflow = '';
+                          content.classList.add('animate');
+                        }
+                        document.documentElement.classList.remove('no-animations');
+                      }, 0.5);
+                    });
+                  });
+                }
+                
+                if (document.readyState === 'complete') {
+                  enableAnimations();
+                } else if (document.readyState === 'interactive') {
+                  enableAnimations();
+                } else {
+                  document.addEventListener('DOMContentLoaded', enableAnimations, { once: true });
+                  window.addEventListener('load', enableAnimations, { once: true });
+                }
+              })();
+            `,
+          }}
+        />
         <AnimationController />
         <div className="overlay"></div>
         <div className="scanline"></div>

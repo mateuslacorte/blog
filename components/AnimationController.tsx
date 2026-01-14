@@ -4,34 +4,46 @@ import { useEffect } from 'react'
 
 export default function AnimationController() {
   useEffect(() => {
-    // Ensure no-animations class is set
-    if (!document.documentElement.classList.contains('no-animations')) {
-      document.documentElement.classList.add('no-animations')
+    // This is a backup - the inline script should handle it first
+    // But this ensures it works even if the inline script fails
+    const wrapper = document.querySelector('.wrapper')
+    const content = document.querySelector('.content')
+    
+    // Ensure content is visible
+    if (wrapper && !wrapper.classList.contains('animate')) {
+      ;(wrapper as HTMLElement).style.height = '100%'
+      ;(wrapper as HTMLElement).style.overflow = 'visible'
+    }
+    if (content && !content.classList.contains('animate')) {
+      ;(content as HTMLElement).style.height = 'auto'
+      ;(content as HTMLElement).style.overflow = 'visible'
     }
     
-    function enableAnimations() {
-      // Wait for content to be fully loaded, then enable animations after 0.5ms
-      const enable = () => {
+    // Enable animations after a tiny delay
+    const enable = () => {
+      requestAnimationFrame(() => {
         setTimeout(() => {
+          const w = document.querySelector('.wrapper')
+          const c = document.querySelector('.content')
+          if (w && !w.classList.contains('animate')) {
+            ;(w as HTMLElement).style.height = ''
+            ;(w as HTMLElement).style.overflow = ''
+            w.classList.add('animate')
+          }
+          if (c && !c.classList.contains('animate')) {
+            ;(c as HTMLElement).style.height = ''
+            ;(c as HTMLElement).style.overflow = ''
+            c.classList.add('animate')
+          }
           document.documentElement.classList.remove('no-animations')
-          const wrapper = document.querySelector('.wrapper')
-          const content = document.querySelector('.content')
-          if (wrapper) wrapper.classList.add('animate')
-          if (content) content.classList.add('animate')
         }, 0.5)
-      }
-      
-      if (document.readyState === 'complete') {
-        enable()
-      } else {
-        window.addEventListener('load', enable, { once: true })
-      }
+      })
     }
     
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', enableAnimations)
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      enable()
     } else {
-      enableAnimations()
+      window.addEventListener('load', enable, { once: true })
     }
   }, [])
   

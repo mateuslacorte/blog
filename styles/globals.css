@@ -1,9 +1,16 @@
 /* Google Fonts loaded via link tag in layout.tsx for better performance */
 
-/* Disable animations until content loads */
-html.no-animations .wrapper,
+/* Disable animations until content loads - show content immediately */
+html.no-animations .wrapper {
+  animation: none !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
 html.no-animations .content {
   animation: none !important;
+  height: auto !important;
+  overflow: visible !important;
 }
 
 @keyframes scroll {
@@ -258,9 +265,10 @@ nav.site ul li {
 }
 
 .wrapper {
-  animation: none;
+  animation: none !important;
+  height: 100% !important;
   margin: 0;
-  overflow: hidden;
+  overflow: visible !important;
   padding: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -268,11 +276,13 @@ nav.site ul li {
 
 .wrapper.animate {
   animation: scroll 5s 1;
+  overflow: hidden;
 }
 
 .content {
-  animation: none;
-  overflow: hidden;
+  animation: none !important;
+  height: auto !important;
+  overflow: visible !important;
   padding: 40px;
   position: relative;
   width: 95%;
@@ -280,6 +290,7 @@ nav.site ul li {
 
 .content.animate {
   animation: scroll 3s 1;
+  overflow: hidden;
 }
 
 #logo-v {
