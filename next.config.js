@@ -15,6 +15,10 @@ const nextConfig = {
   swcMinify: true,
   // Optimize production builds (disable source maps to reduce size)
   productionBrowserSourceMaps: false,
+  // Experimental features for better optimization
+  experimental: {
+    optimizePackageImports: ['date-fns'],
+  },
   // Webpack optimizations for better compression
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -27,6 +31,14 @@ const nextConfig = {
         // Tree shaking
         moduleIds: 'deterministic',
         chunkIds: 'deterministic',
+      }
+      
+      // Remove polyfills for modern browsers
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
       }
     }
     return config

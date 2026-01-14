@@ -8,6 +8,9 @@ const vt323 = VT323({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
+  fallback: ['Courier', 'monospace'],
+  adjustFontFallback: true,
+  variable: '--font-vt323',
 })
 
 export const metadata: Metadata = {
@@ -39,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={vt323.className}>
+    <html lang="en" className={`${vt323.variable} ${vt323.className}`}>
       <body>
         <div className="overlay"></div>
         <div className="scanline"></div>

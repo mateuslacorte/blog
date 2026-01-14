@@ -122,7 +122,7 @@ body {
   color: #0d0;
   font-size: 64.5%;
   font-size: 1.4em;
-  font-family: 'VT323', Courier;
+  font-family: var(--font-vt323, 'VT323', Courier, monospace);
   height: 100%;
   margin: 0;
   padding: 0;
@@ -303,7 +303,7 @@ textarea {
   color: #0d0;
   display: block;
   float: left;
-  font-family: 'VT323', Courier;
+  font-family: var(--font-vt323, 'VT323', Courier, monospace);
   font-size: 1.2em;
   position: relative;
   width: 80%;
@@ -340,7 +340,7 @@ input[type=file]::file-selector-button {
   border: 1px solid #0d0;
   color: #0d0;
   cursor: pointer;
-  font-family: 'VT323', Courier;
+  font-family: var(--font-vt323, 'VT323', Courier, monospace);
   font-size: 1em;
   margin-right: 10px;
   padding: 5px 10px;
@@ -378,7 +378,7 @@ a.button {
   color: #0d0;
   cursor: hand;
   display: inline-block;
-  font-family: 'VT323', Courier;
+  font-family: var(--font-vt323, 'VT323', Courier, monospace);
   font-size: 1em;
   margin-bottom: 20px;
   opacity: 0.25;
