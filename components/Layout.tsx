@@ -13,7 +13,9 @@ export default function Layout({ children }: LayoutProps) {
       <div className="content clearfix">
         <Header />
         <Navigation />
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <Footer />
       </div>
     </div>
