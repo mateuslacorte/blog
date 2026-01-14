@@ -11,7 +11,7 @@ export default function Header() {
     <header className="site clearfix">
       <div className="col one">
         <img
-          src="/assets/images/logo.png"
+          src="/assets/images/logo.webp"
           alt="LACORTE Systems"
           id="logo-v"
           width={314}
