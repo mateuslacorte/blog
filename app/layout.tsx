@@ -83,12 +83,22 @@ export default function RootLayout({
                           wrapper.style.overflow = '';
                           wrapper.style.animation = '';
                           wrapper.classList.add('animate');
+                          // Restore scroll after animation completes
+                          wrapper.addEventListener('animationend', function() {
+                            wrapper.style.overflow = '';
+                            wrapper.classList.remove('animate');
+                          }, { once: true });
                         }
                         if (content) {
                           content.style.height = '';
                           content.style.overflow = '';
                           content.style.animation = '';
                           content.classList.add('animate');
+                          // Restore scroll after animation completes
+                          content.addEventListener('animationend', function() {
+                            content.style.overflow = '';
+                            content.classList.remove('animate');
+                          }, { once: true });
                         }
                         document.documentElement.classList.remove('no-animations');
                       }, 0.5);

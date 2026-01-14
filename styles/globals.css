@@ -279,6 +279,10 @@ nav.site ul li {
   overflow: hidden;
 }
 
+.wrapper:not(.animate) {
+  overflow: visible;
+}
+
 .content {
   animation: none;
   height: auto;
@@ -291,6 +295,10 @@ nav.site ul li {
 .content.animate {
   animation: scroll 3s 1 !important;
   overflow: hidden;
+}
+
+.content:not(.animate) {
+  overflow: visible;
 }
 
 #logo-v {
