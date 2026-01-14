@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
+import { VT323 } from 'next/font/google'
 import '../styles/globals.css'
 import Layout from '@/components/Layout'
+
+const vt323 = VT323({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={vt323.className}>
       <body>
         <div className="overlay"></div>
         <div className="scanline"></div>
