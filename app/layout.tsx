@@ -55,10 +55,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                // Store reference to injected style for removal later
+                var injectedStyle = null;
+                
                 // Ensure content is visible immediately
-                var style = document.createElement('style');
-                style.textContent = '.wrapper, .content { animation: none !important; height: auto !important; overflow: visible !important; }';
-                document.head.appendChild(style);
+                injectedStyle = document.createElement('style');
+                injectedStyle.id = 'no-animations-style';
+                injectedStyle.textContent = '.wrapper:not(.animate), .content:not(.animate) { animation: none !important; height: auto !important; overflow: visible !important; }';
+                document.head.appendChild(injectedStyle);
                 
                 function enableAnimations() {
                   // Wait for content to render, then enable animations
@@ -67,14 +71,23 @@ export default function RootLayout({
                       setTimeout(function() {
                         var wrapper = document.querySelector('.wrapper');
                         var content = document.querySelector('.content');
+                        
+                        // Remove injected style
+                        var styleToRemove = document.getElementById('no-animations-style');
+                        if (styleToRemove) {
+                          styleToRemove.remove();
+                        }
+                        
                         if (wrapper) {
                           wrapper.style.height = '';
                           wrapper.style.overflow = '';
+                          wrapper.style.animation = '';
                           wrapper.classList.add('animate');
                         }
                         if (content) {
                           content.style.height = '';
                           content.style.overflow = '';
+                          content.style.animation = '';
                           content.classList.add('animate');
                         }
                         document.documentElement.classList.remove('no-animations');

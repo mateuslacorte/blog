@@ -1,13 +1,13 @@
 /* Google Fonts loaded via link tag in layout.tsx for better performance */
 
 /* Disable animations until content loads - show content immediately */
-html.no-animations .wrapper {
+html.no-animations .wrapper:not(.animate) {
   animation: none !important;
   height: 100% !important;
   overflow: visible !important;
 }
 
-html.no-animations .content {
+html.no-animations .content:not(.animate) {
   animation: none !important;
   height: auto !important;
   overflow: visible !important;
@@ -265,31 +265,31 @@ nav.site ul li {
 }
 
 .wrapper {
-  animation: none !important;
-  height: 100% !important;
+  animation: none;
+  height: 100%;
   margin: 0;
-  overflow: visible !important;
+  overflow: visible;
   padding: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .wrapper.animate {
-  animation: scroll 5s 1;
+  animation: scroll 5s 1 !important;
   overflow: hidden;
 }
 
 .content {
-  animation: none !important;
-  height: auto !important;
-  overflow: visible !important;
+  animation: none;
+  height: auto;
+  overflow: visible;
   padding: 40px;
   position: relative;
   width: 95%;
 }
 
 .content.animate {
-  animation: scroll 3s 1;
+  animation: scroll 3s 1 !important;
   overflow: hidden;
 }
 
