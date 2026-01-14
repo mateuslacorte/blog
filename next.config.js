@@ -43,9 +43,10 @@ const nextConfig = {
         tls: false,
       }
       
-      // Exclude polyfills from core-js
+      // Exclude polyfills from core-js - more aggressive approach
+      const existingAlias = config.resolve.alias || {}
       config.resolve.alias = {
-        ...config.resolve.alias,
+        ...existingAlias,
         'core-js/modules/es.array.at': false,
         'core-js/modules/es.array.flat': false,
         'core-js/modules/es.array.flat-map': false,
@@ -53,6 +54,15 @@ const nextConfig = {
         'core-js/modules/es.object.has-own': false,
         'core-js/modules/es.string.trim-end': false,
         'core-js/modules/es.string.trim-start': false,
+        'core-js': false,
+        '@swc/helpers': false,
+      }
+      
+      // Prevent polyfills from being included
+      if (config.plugins) {
+        config.plugins = config.plugins.filter((plugin: any) => {
+          return !(plugin && plugin.constructor && plugin.constructor.name === 'ProvidePlugin' && plugin.definitions && Object.keys(plugin.definitions).some((key: string) => key.includes('core-js')))
+        })
       }
     }
     return config
