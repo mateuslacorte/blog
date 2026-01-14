@@ -266,7 +266,11 @@ After successfully sending logs, we reset the memory buffer. We do this by tempo
 
 
 ```routeros
-/system scheduler add name="betterstack-sender" start-time=startup interval=30s on-event="betterstack-sender"
+/system scheduler add \
+    name="betterstack-sender" \
+    start-time=startup \
+    interval=30s \
+    on-event="betterstack-sender"
 ```
 
 
