@@ -39,6 +39,10 @@ export const metadata: Metadata = {
   other: {
     'disable-animations': 'true',
   },
+  // Add resource hints for performance
+  alternates: {
+    canonical: 'https://www.lacorte.dev',
+  },
 }
 
 export default function RootLayout({
@@ -48,6 +52,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
+      <head>
+        {/* DNS Prefetch - Resolve DNS early */}
+        <link rel="dns-prefetch" href="https://www.lacorte.dev" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        
+        {/* Preconnect - Establish early connections */}
+        <link rel="preconnect" href="https://www.lacorte.dev" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body>
         <Script
           id="disable-animations-inline"
