@@ -2,10 +2,19 @@
 
 @keyframes scroll {
   0% {
-    height: 0;
+    transform: scaleY(0);
   }
   100% {
-    height: 100%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(110vh);
   }
 }
 
@@ -258,6 +267,8 @@ nav.site ul li {
   padding: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  transform-origin: top;
+  will-change: transform;
 }
 
 .content {
@@ -266,6 +277,8 @@ nav.site ul li {
   padding: 40px;
   position: relative;
   width: 95%;
+  transform-origin: top;
+  will-change: transform;
 }
 
 #logo-v {
@@ -401,7 +414,7 @@ a.button:hover {
 }
 
 .scanline {
-  animation: scroll 10s 5s infinite;
+  animation: scanline-move 10s 5s infinite;
   background: -moz-linear-gradient(top, #fff0 0%, rgb(0 221 0) 50%, #fff0 100%);
   background: -webkit-linear-gradient(top, #fff0 0%, rgb(0 221 0) 50%, #fff0 100%);
   background: linear-gradient(to bottom, #fff0 0%, rgb(0 221 0) 50%, #fff0 100%);
@@ -412,9 +425,10 @@ a.button:hover {
   position: fixed;
   left: 0;
   right: 0;
-  top: -5%;
+  top: 0;
   z-index: 2;
   pointer-events: none;
+  will-change: transform;
 }
 
 .clear {
