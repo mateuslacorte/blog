@@ -3,6 +3,8 @@ import { getAllPosts } from '@/lib/posts'
 import fs from 'fs'
 import path from 'path'
 
+const POSTS_PER_PAGE = 5
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.lacorte.dev'
   const postsDirectory = path.join(process.cwd(), 'content', 'posts')
@@ -38,6 +40,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   })
 
+  // Create pagination URLs for posts
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+  const paginationUrls = []
+  
+  // Add /posts page (first page)
+  paginationUrls.push({
+    url: `${baseUrl}/posts`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.9,
+  })
+
+  // Add pagination pages (page/2, page/3, etc.)
+  for (let page = 2; page <= totalPages; page++) {
+    paginationUrls.push({
+      url: `${baseUrl}/posts/page/${page}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })
+  }
+
   // Static pages
   const staticPages = [
     {
@@ -72,6 +96,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  return [...staticPages, ...postUrls]
+  return [...staticPages, ...paginationUrls, ...postUrls]
 }
 
