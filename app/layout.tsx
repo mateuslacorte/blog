@@ -39,10 +39,6 @@ export const metadata: Metadata = {
   other: {
     'disable-animations': 'true',
   },
-  // Add resource hints for performance
-  alternates: {
-    canonical: 'https://www.lacorte.dev',
-  },
 }
 
 export default function RootLayout({
@@ -52,81 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
-      <head>
-        {/* Critical CSS - Inline for immediate rendering */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            *{box-sizing:border-box}
-            html,body{background:#383838;color:#0d0;font-size:1.4em;font-family:var(--font-vt323,'VT323',Courier,monospace);height:100%;margin:0;padding:0}
-            .wrapper{animation:none;height:100%;margin:0;overflow:visible;padding:0}
-            .content{animation:none;height:auto;overflow:visible;padding:40px;position:relative;width:95%}
-            html.no-animations .wrapper:not(.animate),html.no-animations .content:not(.animate){animation:none!important;height:auto!important;overflow:visible!important}
-          `
-        }} />
-      </head>
       <body>
-        <Script
-          id="resource-hints"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var d = document;
-                var head = d.head || d.getElementsByTagName('head')[0];
-                
-                // DNS Prefetch
-                ['https://www.lacorte.dev', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'].forEach(function(url) {
-                  var link = d.createElement('link');
-                  link.rel = 'dns-prefetch';
-                  link.href = url;
-                  head.appendChild(link);
-                });
-                
-                // Preconnect
-                ['https://www.lacorte.dev', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'].forEach(function(url) {
-                  var link = d.createElement('link');
-                  link.rel = 'preconnect';
-                  link.href = url;
-                  link.crossOrigin = 'anonymous';
-                  head.appendChild(link);
-                });
-                
-                // Defer non-critical CSS loading
-                // This will be handled by Next.js automatically, but we ensure
-                // CSS doesn't block rendering by using preload
-                function preloadCSS() {
-                  var links = head.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
-                  links.forEach(function(link) {
-                    // Mark as non-blocking by setting media to print temporarily
-                    if (!link.hasAttribute('data-deferred')) {
-                      link.setAttribute('data-deferred', 'true');
-                      var originalMedia = link.media || 'all';
-                      link.media = 'print';
-                      link.onload = function() {
-                        this.media = originalMedia;
-                      };
-                      // Fallback
-                      setTimeout(function() {
-                        if (link.media === 'print') {
-                          link.media = originalMedia;
-                        }
-                      }, 100);
-                    }
-                  });
-                }
-                
-                // Defer CSS after first paint
-                if (d.readyState === 'loading') {
-                  d.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(preloadCSS, 0);
-                  });
-                } else {
-                  setTimeout(preloadCSS, 0);
-                }
-              })();
-            `
-          }}
-        />
         <Script
           id="disable-animations-inline"
           strategy="beforeInteractive"
