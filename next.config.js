@@ -19,6 +19,8 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['date-fns'],
   },
+  // Disable polyfills for modern browsers
+  transpilePackages: [],
   // Webpack optimizations for better compression
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -39,6 +41,18 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
+      }
+      
+      // Exclude polyfills from core-js
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'core-js/modules/es.array.at': false,
+        'core-js/modules/es.array.flat': false,
+        'core-js/modules/es.array.flat-map': false,
+        'core-js/modules/es.object.from-entries': false,
+        'core-js/modules/es.object.has-own': false,
+        'core-js/modules/es.string.trim-end': false,
+        'core-js/modules/es.string.trim-start': false,
       }
     }
     return config

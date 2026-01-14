@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { VT323 } from 'next/font/google'
 import '../styles/globals.css'
 import Layout from '@/components/Layout'
+import AnimationController from '@/components/AnimationController'
 
 const vt323 = VT323({
   weight: '400',
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
     title: 'LACORTE Systems',
     description: 'Fallout Terminal Inspired Blog',
   },
+  other: {
+    'disable-animations': 'true',
+  },
 }
 
 export default function RootLayout({
@@ -42,8 +46,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${vt323.variable} ${vt323.className}`}>
+    <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
       <body>
+        <AnimationController />
         <div className="overlay"></div>
         <div className="scanline"></div>
         <Layout>{children}</Layout>
