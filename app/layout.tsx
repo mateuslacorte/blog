@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { VT323 } from 'next/font/google'
-import '../styles/globals.css'
 import Layout from '@/components/Layout'
 import AnimationController from '@/components/AnimationController'
 import { websiteJsonLd } from '@/lib/seo'
+import { getInlineGlobalCss } from '@/lib/inline-css'
 import {
   DEFAULT_OG_IMAGE_PATH,
   SITE_AUTHOR,
@@ -14,16 +13,6 @@ import {
   absoluteOgImage,
   absoluteUrl,
 } from '@/lib/site'
-
-const vt323 = VT323({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['Courier', 'monospace'],
-  adjustFontFallback: true,
-  variable: '--font-vt323',
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,7 +37,6 @@ export const metadata: Metadata = {
   creator: SITE_AUTHOR,
   publisher: SITE_AUTHOR,
   alternates: {
-    canonical: absoluteUrl('/'),
     types: {
       'application/rss+xml': absoluteUrl('/feed.xml'),
     },
@@ -94,9 +82,23 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const jsonLd = websiteJsonLd()
+  const globalCss = getInlineGlobalCss()
 
   return (
-    <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
+    <html lang="en" className="no-animations">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/vt323-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <style
+          id="global-css"
+          dangerouslySetInnerHTML={{ __html: globalCss }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

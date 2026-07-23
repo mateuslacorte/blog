@@ -94,6 +94,14 @@ POST - Adiciona comentário a um post
 - Configure serviços de email para formulários (SendGrid, Resend, etc.)
 - Adicione um logo em `public/assets/images/logo.webp`
 
+## Google Search Console (após deploy)
+
+1. Property deve ser **`https://www.lacorte.dev`** (alinhar com `NEXT_PUBLIC_SITE_URL`; apex sem www só se redirecionar 301 para www).
+2. Em **Sitemaps**, envie/reenvie `https://www.lacorte.dev/sitemap.xml`.
+3. Em **URL Inspection**, teste `/posts` e 2–3 posts individuais → **Request indexing**.
+4. Confirme no Vercel que Attack Challenge / Bot Protection não bloqueia o Googlebot (403 em crawlers).
+5. Indexação não é imediata — “Crawled – currently not indexed” em site pequeno pode levar dias mesmo após os fixes.
+
 ## Licença
 
 MIT

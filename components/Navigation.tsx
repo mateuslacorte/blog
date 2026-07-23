@@ -10,6 +10,11 @@ export default function Navigation() {
           </Link>
         </li>
         <li>
+          <Link href="/posts" title="Posts">
+            Posts
+          </Link>
+        </li>
+        <li>
           <Link href="/portfolio" title="Portfolio">
             Portfolio
           </Link>
@@ -33,4 +38,3 @@ export default function Navigation() {
     </nav>
   )
 }
-

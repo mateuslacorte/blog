@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/posts/${post.slug}`,
       lastModified,
       changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      priority: 0.9,
     }
   })
 
@@ -60,13 +60,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: baseUrl,
       lastModified: newestPostDate,
       changeFrequency: 'daily',
-      priority: 1.0,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/portfolio`,
       lastModified: newestPostDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/skills`,
@@ -78,13 +78,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/contact`,
       lastModified: newestPostDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/lore`,
       lastModified: newestPostDate,
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.5,
     },
   ]
 

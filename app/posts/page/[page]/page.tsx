@@ -60,7 +60,7 @@ export default async function PostsPagePaginated({ params }: PageProps) {
 
   return (
     <>
-      <h2>All Posts - Page {pageNumber}</h2>
+      <h1>All Posts - Page {pageNumber}</h1>
 
       {posts.length > 0 ? (
         posts.map((post) => (

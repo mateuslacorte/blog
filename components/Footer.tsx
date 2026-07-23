@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -9,7 +10,7 @@ export default function Footer() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
@@ -33,6 +34,10 @@ export default function Footer() {
   return (
     <footer>
       <p>&copy; {currentYear} LACORTE Systems</p>
+      <p>
+        <Link href="/posts">[ Posts ]</Link>{' '}
+        <a href="/feed.xml">[ RSS ]</a>
+      </p>
 
       <h3>Subscribe to Our Newsletter</h3>
       {submitted ? (
@@ -55,4 +60,3 @@ export default function Footer() {
     </footer>
   )
 }
-

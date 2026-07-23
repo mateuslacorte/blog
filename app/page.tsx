@@ -3,12 +3,12 @@ import { getAllPosts } from '@/lib/posts'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-const POSTS_PER_PAGE = 5
+const RECENT_POSTS = 3
 
 export const metadata: Metadata = {
   title: 'Home',
   description:
-    'Recent posts — engineering notes, portfolio projects, and random rants about development, networking, and more.',
+    'Welcome to Lacorte\'s blog — recent engineering notes, portfolio projects, and random rants about development and networking.',
   alternates: {
     canonical: '/',
   },
@@ -16,12 +16,16 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const allPosts = await getAllPosts()
-  const posts = allPosts.slice(0, POSTS_PER_PAGE)
-  const hasMore = allPosts.length > POSTS_PER_PAGE
+  const posts = allPosts.slice(0, RECENT_POSTS)
+  const hasMore = allPosts.length > RECENT_POSTS
 
   return (
     <>
-      <h2>Recent Posts</h2>
+      <h1>Recent Posts</h1>
+      <p>
+        Latest notes from the terminal. For the full archive, head to{' '}
+        <Link href="/posts">All Posts</Link>.
+      </p>
 
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
@@ -29,10 +33,9 @@ export default async function Home() {
 
       {hasMore && (
         <nav className="pagination">
-          <Link href="/posts/page/2">Next →</Link>
+          <Link href="/posts">View all posts →</Link>
         </nav>
       )}
     </>
   )
 }
-

@@ -60,3 +60,28 @@ export function blogPostingJsonLd(post: PostData) {
     image: [absoluteUrl(`/posts/${post.slug}/opengraph-image`)],
   }
 }
+
+export function postsCollectionJsonLd(posts: PostData[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'All Posts',
+    description:
+      'Full post archive — every engineering note, portfolio write-up, and rant published on this blog.',
+    url: absoluteUrl('/posts'),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(`/posts/${post.slug}`),
+        name: post.title,
+      })),
+    },
+  }
+}

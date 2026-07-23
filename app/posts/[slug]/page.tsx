@@ -1,6 +1,7 @@
 import { getPostBySlug, getAllPostSlugs } from '@/lib/posts'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import Comments from '@/components/Comments'
 import type { Metadata } from 'next'
 import { blogPostingJsonLd } from '@/lib/seo'
@@ -96,6 +97,9 @@ export default async function PostPage({ params }: PostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <p>
+        <Link href="/posts">← All posts</Link>
+      </p>
       <h1>{post.title}</h1>
       {formattedDate && <p>{formattedDate}</p>}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />

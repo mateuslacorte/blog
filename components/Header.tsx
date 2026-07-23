@@ -14,8 +14,8 @@ export default function Header() {
           src="/assets/images/logo.webp"
           alt="LACORTE Systems"
           id="logo-v"
-          width={314}
-          height={136}
+          width={350}
+          height={175}
           style={{ display: 'block', height: 'auto', margin: '0 auto' }}
         />
       </div>
