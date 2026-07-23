@@ -3,6 +3,12 @@ import fs from 'fs'
 import path from 'path'
 import { put, list, del } from '@vercel/blob'
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Accept',
+}
+
 const commentsDirectory = path.join(process.cwd(), 'data', 'comments')
 
 let useBlobStorage: boolean | null = null
@@ -118,6 +124,10 @@ async function writeComments(postSlug: string, comments: Comment[]): Promise<boo
   }
 }
 
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: corsHeaders })
+}
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const postSlug = searchParams.get('postSlug')
@@ -125,12 +135,12 @@ export async function GET(request: NextRequest) {
   if (!postSlug) {
     return NextResponse.json(
       { error: 'postSlug is required' },
-      { status: 400 }
+      { status: 400, headers: corsHeaders }
     )
   }
 
   const comments = await readComments(postSlug)
-  return NextResponse.json(comments)
+  return NextResponse.json(comments, { headers: corsHeaders })
 }
 
 export async function POST(request: NextRequest) {
@@ -141,7 +151,7 @@ export async function POST(request: NextRequest) {
     if (!postSlug || !name || !comment) {
       return NextResponse.json(
         { error: 'All fields are required' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       )
     }
 
@@ -160,16 +170,16 @@ export async function POST(request: NextRequest) {
     if (!written) {
       return NextResponse.json(
         { error: 'Failed to save comment' },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       )
     }
 
-    return NextResponse.json(newComment, { status: 201 })
+    return NextResponse.json(newComment, { status: 201, headers: corsHeaders })
   } catch (error) {
     console.error('Error processing comment:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     )
   }
 }

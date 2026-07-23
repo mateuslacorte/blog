@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Accept',
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: corsHeaders })
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -8,7 +18,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'All required fields are required' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       )
     }
 
@@ -31,13 +41,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { message: 'Contact form submitted successfully' },
-      { status: 200 }
+      { status: 200, headers: corsHeaders }
     )
   } catch (error) {
     console.error('Error processing contact form:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     )
   }
 }
