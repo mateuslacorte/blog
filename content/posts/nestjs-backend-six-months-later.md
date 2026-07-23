@@ -1,7 +1,7 @@
 ---
 title: "NestJS Reference Backend, Six Months Later"
 date: "2026-07-23"
-excerpt: "I said it was production-ready in January. Then I actually tried to run it like one. Here's what changed."
+excerpt: "Docker Compose, Graylog, health checks, bilingual docs, and CQRS-ready repos — what changed in my NestJS reference backend since January."
 tags: ["portfolio", "nestjs", "backend", "typescript", "docker", "observability"]
 ---
 

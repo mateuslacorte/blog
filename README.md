@@ -89,9 +89,10 @@ POST - Adiciona comentário a um post
 
 ## Notas
 
-- Atualize o domínio em `app/sitemap.ts` e `app/robots.ts`
+- Defina `NEXT_PUBLIC_SITE_URL` (ver `.env.example`) para canonicals, sitemap, robots e Open Graph
+- RSS em `/feed.xml`
 - Configure serviços de email para formulários (SendGrid, Resend, etc.)
-- Adicione um logo em `public/assets/images/logo.png`
+- Adicione um logo em `public/assets/images/logo.webp`
 
 ## Licença
 

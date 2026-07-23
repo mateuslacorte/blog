@@ -7,7 +7,11 @@ const POSTS_PER_PAGE = 5
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Recent posts from LACORTE Systems',
+  description:
+    'Recent posts — engineering notes, portfolio projects, and random rants about development, networking, and more.',
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default async function Home() {

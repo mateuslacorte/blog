@@ -3,6 +3,12 @@ import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
 import Comments from '@/components/Comments'
 import type { Metadata } from 'next'
+import { blogPostingJsonLd } from '@/lib/seo'
+import {
+  SITE_AUTHOR,
+  SITE_NAME,
+  absoluteUrl,
+} from '@/lib/site'
 
 interface PostPageProps {
   params: {
@@ -25,18 +31,48 @@ export async function generateMetadata({
   if (!post) {
     return {
       title: 'Post Not Found',
+      robots: { index: false, follow: false },
     }
   }
 
+  const url = absoluteUrl(`/posts/${post.slug}`)
+  const description =
+    post.excerpt ||
+    `${post.title} — a post on ${SITE_NAME}.`
+  const ogImage = absoluteUrl(`/posts/${post.slug}/opengraph-image`)
+
   return {
     title: post.title,
-    description: post.excerpt,
+    description,
+    keywords: post.tags,
+    authors: [{ name: SITE_AUTHOR }],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: 'article',
+      url,
+      siteName: SITE_NAME,
       publishedTime: post.date,
+      modifiedTime: post.date,
       tags: post.tags,
+      authors: [SITE_AUTHOR],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description,
+      images: [ogImage],
     },
   }
 }
@@ -52,8 +88,14 @@ export default async function PostPage({ params }: PostPageProps) {
     ? format(new Date(post.date), 'MMMM dd, yyyy')
     : ''
 
+  const jsonLd = blogPostingJsonLd(post)
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1>{post.title}</h1>
       {formattedDate && <p>{formattedDate}</p>}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -74,4 +116,3 @@ export default async function PostPage({ params }: PostPageProps) {
     </>
   )
 }
-

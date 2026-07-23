@@ -7,7 +7,17 @@ const POSTS_PER_PAGE = 5
 
 export const metadata: Metadata = {
   title: 'All Posts',
-  description: 'All blog posts from LACORTE Systems',
+  description:
+    'All posts — engineering notes, portfolio projects, and random rants on development, networking, and whatever else I ship.',
+  alternates: {
+    canonical: '/posts',
+  },
+  openGraph: {
+    title: 'All Posts',
+    description:
+      'All posts — engineering notes, portfolio projects, and random rants on development, networking, and whatever else I ship.',
+    url: '/posts',
+  },
 }
 
 export default async function PostsPage() {

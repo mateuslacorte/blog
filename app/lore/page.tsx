@@ -3,7 +3,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Lore',
-  description: 'Learn about LACORTE OS and LACORTE Industries',
+  description:
+    'Lore of LACORTE OS and LACORTE Industries — the terminal-inspired mythology behind this blog.',
+  alternates: {
+    canonical: '/lore',
+  },
 }
 
 export default function LorePage() {

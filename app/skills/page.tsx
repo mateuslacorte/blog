@@ -2,7 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Skills',
-  description: 'Skill Tree & Technologies used by LACORTE Systems',
+  description:
+    'The stack I actually use — TypeScript, React, Next.js, NestJS, networking, and related chaos.',
+  alternates: {
+    canonical: '/skills',
+  },
 }
 
 export default function SkillsPage() {

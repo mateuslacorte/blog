@@ -4,6 +4,16 @@ import { VT323 } from 'next/font/google'
 import '../styles/globals.css'
 import Layout from '@/components/Layout'
 import AnimationController from '@/components/AnimationController'
+import { websiteJsonLd } from '@/lib/seo'
+import {
+  DEFAULT_OG_IMAGE_PATH,
+  SITE_AUTHOR,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  absoluteOgImage,
+  absoluteUrl,
+} from '@/lib/site'
 
 const vt323 = VT323({
   weight: '400',
@@ -16,25 +26,62 @@ const vt323 = VT323({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'LACORTE Systems',
-    template: '%s | LACORTE Systems',
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: 'Fallout Terminal Inspired Blog - LACORTE Systems (tm)',
-  keywords: ['blog', 'fallout', 'terminal', 'react', 'next.js'],
-  authors: [{ name: 'LACORTE Industries' }],
+  description: SITE_DESCRIPTION,
+  keywords: [
+    'blog',
+    'engineering notes',
+    'portfolio',
+    'NestJS',
+    'Node.js',
+    'TypeScript',
+    'backend',
+    'networking',
+    'Mateus',
+    'Lacorte',
+  ],
+  authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
+  creator: SITE_AUTHOR,
+  publisher: SITE_AUTHOR,
+  alternates: {
+    canonical: absoluteUrl('/'),
+    types: {
+      'application/rss+xml': absoluteUrl('/feed.xml'),
+    },
+  },
+  icons: {
+    icon: DEFAULT_OG_IMAGE_PATH,
+    apple: DEFAULT_OG_IMAGE_PATH,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.lacorte.dev',
-    siteName: 'LACORTE Systems',
-    title: 'LACORTE Systems',
-    description: 'Fallout Terminal Inspired Blog',
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: absoluteOgImage(),
+        width: 512,
+        height: 512,
+        alt: SITE_NAME,
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
-    title: 'LACORTE Systems',
-    description: 'Fallout Terminal Inspired Blog',
+    card: 'summary_large_image',
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [absoluteOgImage()],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   other: {
     'disable-animations': 'true',
@@ -46,9 +93,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = websiteJsonLd()
+
   return (
     <html lang="en" className={`${vt323.variable} ${vt323.className} no-animations`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script
           id="disable-animations-inline"
           strategy="beforeInteractive"
@@ -126,4 +179,3 @@ export default function RootLayout({
     </html>
   )
 }
-
